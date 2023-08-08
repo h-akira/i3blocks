@@ -1,0 +1,9 @@
+{
+  "bluetooth":{
+    "Device1":"A1:B2:C3:D4:5E:6F",
+    "Device2":"A1:B2:C3:D4:5E:6F"
+  },
+  "dollar":{
+    "KEY":"12345678ABCDEFGH"
+  }
+}

@@ -10,6 +10,7 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import requests
+import traceback
 
 def parse_args():
   import argparse
@@ -18,6 +19,7 @@ def parse_args():
 """, formatter_class = argparse.ArgumentDefaultsHelpFormatter)
   parser.add_argument("--version", action="version", version='%(prog)s 0.0.1')
   parser.add_argument("--encoding", metavar="encoding", default="utf-8", help="encoding")
+  parser.add_argument("-e", "--error", action="store_true", help="print error message")
   parser.add_argument("file", metavar="json-file", help="json file")
   options = parser.parse_args()
   if not os.path.isfile(options.file): 
@@ -69,7 +71,10 @@ def main():
       dollar_yen_buy = str(get_rate_AlphaVantage(info["dollar"]["KEY"]))
       if len(dollar_yen_buy)>7:
         dollar_yen_buy = dollar_yen_buy[:7]
-    except:
+    except Exception:
+      if options.error:
+        print("=== Error ===")
+        traceback.print_exc()
       dollar_yen_buy = "NULL"
     print(f"USD/JPY={dollar_yen_buy}")
   else:

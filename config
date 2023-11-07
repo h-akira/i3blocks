@@ -124,7 +124,7 @@ interval=7
 
 [dollar]
 command=~/.config/i3blocks/dollar.py ~/.config/i3blocks/secret.json
-interval=600
+interval=3600
 
 # Date Time
 #

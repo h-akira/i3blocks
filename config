@@ -123,8 +123,8 @@ command=~/.config/i3blocks/xkeysnail-check.sh
 interval=7
 
 [dollar]
-command=~/.config/i3blocks/dollar.py ~/.config/i3blocks/secret.json
-interval=3600
+command=~/.config/i3blocks/dollar.py -t "USDJPY=X" -n "USD/JPY" -r 3
+interval=59
 
 # Date Time
 #

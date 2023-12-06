@@ -107,7 +107,7 @@ command=~/.config/i3blocks/signal_bar.sh
 interval=11
 
 [share_photo]
-command=~/.config/i3blocks/share_photo.sh
+command=~/.config/i3blocks/SharePhoto.sh
 interval=60
 
 [dropbox]

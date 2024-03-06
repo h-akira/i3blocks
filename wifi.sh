@@ -3,10 +3,9 @@
 # Created:      Nov, 04, 2022 14:01:15
 set -eu
 
-signal=$(nmcli dev wifi | grep "*" | awk '{print $8}')
-bar=$(nmcli dev wifi | grep "*" | awk '{print $9}')
+signal=$(nmcli -g IN-USE,SIGNAL dev wifi | grep "*" | cut -d: -f2)
+# signal=45
 
-# i3blocks/i3blocks-contrib/wifi/wifiより
 COLOR_GE80=${COLOR_GE80:-#00FF00}
 COLOR_GE60=${COLOR_GE60:-#FFF600}
 COLOR_GE40=${COLOR_GE40:-#FFAE00}
@@ -18,8 +17,10 @@ if [ -z "$signal" ]; then
   echo "Disconnected"
   echo $COLOR_DOWN
 else
-  echo "$bar $signal%"
-  echo "$bar $signal%"
+  echo "wifi: ${signal}%"
+  echo "wifi: ${signal}%"
+  # echo "$bar $signal%"
+  # echo "$bar $signal%"
   if [ $signal -ge 80 ]; then
     echo $COLOR_GE80
   elif [ $signal -ge 60 ]; then

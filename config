@@ -35,8 +35,9 @@ markup=none
 # The first parameter sets the step (and units to display)
 # The second parameter overrides the mixer selection
 # See the script for details.
-[volume]
-label=♪
+# [volume]
+[volume-pipewire]
+# label=♪
 # label=VOL
 # interval=once
 interval=1
@@ -102,8 +103,8 @@ interval=13
 # interval=17
 # separator=false
 
-[signal_bar]
-command=~/.config/i3blocks/signal_bar.sh
+[wifi]
+command=~/.config/i3blocks/wifi.sh
 interval=11
 
 [share_photo]

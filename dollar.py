@@ -18,6 +18,7 @@ ticker: https://optrip.xyz/?p=4467
   parser.add_argument("-r", "--round", metavar="桁数", type=int, default=3, help="小数点以下の桁数")
   parser.add_argument("-t", "--ticker", metavar="ticker", default="USDJPY=X", help="ticker")
   parser.add_argument("-n", "--name", metavar="name", default="USD/JPY", help="name")
+  parser.add_argument("-e", "--error", action="store_true", help="show error")
   options = parser.parse_args()
   return options
 

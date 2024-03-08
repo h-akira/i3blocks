@@ -17,8 +17,8 @@ if [ -z "$signal" ]; then
   echo "Disconnected"
   echo $COLOR_DOWN
 else
-  echo "wifi: ${signal}%"
-  echo "wifi: ${signal}%"
+  echo "Wi-Fi: ${signal}%"
+  echo "Wi-Fi: ${signal}%"
   # echo "$bar $signal%"
   # echo "$bar $signal%"
   if [ $signal -ge 80 ]; then

@@ -77,11 +77,11 @@ def market_open(now=None, diff_from_utc=0):
   if check_summer_time(now):
     now = now + datetime.timedelta(hours=1)
   # 判定
-  if 1 <= now.weekday() <= 4:
+  if 0 <= now.weekday() <= 3:
     return True
-  elif now.weekday() == 0 and now.hour >= 17:  
+  elif now.weekday() == 6 and now.hour >= 17:  
     return True
-  elif now.weekday() == 5 and now.hour < 17:
+  elif now.weekday() == 4 and now.hour < 17:
     return True
   else:
     return False

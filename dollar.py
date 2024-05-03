@@ -29,6 +29,7 @@ def parse_args():
     help="error file"
   )
   parser.add_argument("-f", "--force", action="store_true", help="force to execute")
+  parser.add_argument("--no-try", action="store_true", help="do not try")
   # parser.add_argument("file", metavar="json-file", help="json file")
   options = parser.parse_args()
   # if not os.path.isfile(options.file): 
@@ -97,15 +98,21 @@ def main():
       sys.exit()
   # info = json.load(open(options.file, mode="r", encoding=options.encoding))
   if market_open():
-    try:
+    if options.no_try:
       dollar_yen_buy = get_rate()
       if len(dollar_yen_buy)>7:
         dollar_yen_buy = dollar_yen_buy[:7]
       print(f"USD/JPY={dollar_yen_buy}")
-    except:
-      with open(options.error_file, mode="w", encoding=options.encoding) as f:
-        f.write(traceback.format_exc())
-      print("USD/JPY=NULL")
+    else:
+      try:
+        dollar_yen_buy = get_rate()
+        if len(dollar_yen_buy)>7:
+          dollar_yen_buy = dollar_yen_buy[:7]
+        print(f"USD/JPY={dollar_yen_buy}")
+      except:
+        with open(options.error_file, mode="w", encoding=options.encoding) as f:
+          f.write(traceback.format_exc())
+        print("USD/JPY=NULL")
   else:
     print("Market is not open")
 

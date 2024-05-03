@@ -124,8 +124,7 @@ command=~/.config/i3blocks/xkeysnail-check.sh
 interval=7
 
 [dollar]
-# command=~/.config/i3blocks/dollar.py -t "USDJPY=X" -n "USD/JPY" -r 3
-command=~/.config/i3blocks/dollar.py
+command=source ~/.python_venv/bin/activate; ~/.config/i3blocks/dollar.py
 interval=179
 
 # Date Time

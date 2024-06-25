@@ -4,7 +4,7 @@
 set -eu
 
 COLOR_DOWN=${COLOR_DOWN:-#FF0000}
-if [ -e "$(which xkeysnail)" ]; then
+# if [ -e "$(which xkeysnail)" ]; then
   PID=`ps --no-heading -C xkeysnail -o pid | tr -d ' '`
   if [ -n "$PID" ]; then
     echo "xkeysnail: ON"
@@ -13,6 +13,6 @@ if [ -e "$(which xkeysnail)" ]; then
     echo "xkeysnail: OFF"
     echo ${COLOR_DOWN}
   fi
-else
-  echo "xkeysnail: NONE"
-fi
+# else
+#   echo "xkeysnail: NONE"
+# fi

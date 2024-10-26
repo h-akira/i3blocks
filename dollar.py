@@ -30,17 +30,19 @@ def parse_args():
   )
   parser.add_argument("-f", "--force", action="store_true", help="force to execute")
   parser.add_argument("--no-try", action="store_true", help="do not try")
+  parser.add_argument("-H", "--no-headless", action="store_true", help="do not use headless mode")
   # parser.add_argument("file", metavar="json-file", help="json file")
   options = parser.parse_args()
   # if not os.path.isfile(options.file): 
   #   raise Exception("The file does not exist.") 
   return options
 
-def get_rate():
+def get_rate(no_headless):
   URL = "https://www.click-sec.com/corp/guide/fxneo/rate/"
   # CHROMEDRIVER = "/usr/bin/chromedriver"
   options = Options()
-  options.add_argument('--headless')
+  if not no_headless:
+    options.add_argument('--headless')
   # driver = webdriver.Chrome(CHROMEDRIVER, options=options)
   driver = webdriver.Chrome(options=options)
   driver.get(URL)
@@ -71,7 +73,7 @@ def market_open(now=None, diff_from_utc=0):
   # 年末年始等は非対応
   # ニューヨーク時間にする
   if now is None:
-    now = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
+    now = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)
   else:
     now = now - datetime.timedelta(hours=diff_from_utc) - datetime.timedelta(hours=5)
   # 夏時間なら1時間進める
@@ -99,13 +101,13 @@ def main():
   # info = json.load(open(options.file, mode="r", encoding=options.encoding))
   if market_open():
     if options.no_try:
-      dollar_yen_buy = get_rate()
+      dollar_yen_buy = get_rate(options.no_headless)
       if len(dollar_yen_buy)>7:
         dollar_yen_buy = dollar_yen_buy[:7]
       print(f"USD/JPY={dollar_yen_buy}")
     else:
       try:
-        dollar_yen_buy = get_rate()
+        dollar_yen_buy = get_rate(options.no_headless)
         if len(dollar_yen_buy)>7:
           dollar_yen_buy = dollar_yen_buy[:7]
         print(f"USD/JPY={dollar_yen_buy}")

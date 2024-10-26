@@ -115,6 +115,10 @@ interval=60
 command=~/.config/i3blocks/dropbox.sh
 interval=6
 
+[background]
+command=~/.config/i3blocks/random_background.py
+interval=91
+
 [bluetooth]
 command=~/.config/i3blocks/bluetooth.py ~/.config/i3blocks/secret.json
 interval=5
